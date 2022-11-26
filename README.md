@@ -1,5 +1,7 @@
 # Project description
-Implementation of a Variational Autoencoder with Gaussian likelihood and Gaussian prior latent distribution (which implies that the true posterior and the posterior approximated by the encoder are also Gaussian). The loss function used to train this model is the weighted ELBO:$$\mathcal{L}_{\phi, \theta}(X)=\sum_{i=1}^{N}\mathcal{L}_{\phi, \theta}(X_{i})=\\=\sum_{i=1}^{n}(\mathbb{E}_{\epsilon\sim \mathcal{N}(0, I)}[\log P_{\theta}(X_{i}\mid z)]-\beta D_{KL}[Q_{\phi}\mid\mid p(z)])$$
+Implementation of a Variational Autoencoder with Gaussian likelihood and Gaussian prior latent distribution (which implies that the true posterior and the posterior approximated by the encoder are also Gaussian). The loss function used to train this model is the weighted ELBO:
+$$\mathcal{L}_{\phi, \theta}(X)=\sum_{i=1}^{N}\mathcal{L}_{\phi, \theta}(X_{i})=$$
+$$=\sum_{i=1}^{n}(\mathbb{E}_{\epsilon\sim \mathcal{N}(0, I)}[\log P_{\theta}(X_{i}\mid z)]-\beta D_{KL}[Q_{\phi}\mid\mid p(z)])$$
 
 where $\beta \in [0, 1]$ is an annealing parameter used to devalue the KL divergence between the approximated posterior and prior distributtions. 
 
