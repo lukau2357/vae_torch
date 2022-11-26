@@ -1,0 +1,16 @@
+__pycache__/
+
+# Datasetse
+celeba_test/
+celeba_train/
+celeba_validation/
+
+# Benchmarks, figures and saved model
+benchmarks/
+full_aug_const_diminish_20_0_1/
+figs/
+
+# Notes and papers
+beta_schedulling.pdf
+VAE_notes.pdf
+remarks.md
