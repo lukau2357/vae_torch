@@ -1,10 +1,8 @@
 # Project description
 Implementation of a Variational Autoencoder with Gaussian likelihood and Gaussian prior latent distribution (which implies that the true posterior and the posterior approximated by the encoder are also Gaussian). The loss function used to train this model is the weighted ELBO:
 $$
-\begin{align*}
-\mathcal{L}_{\phi, \theta}(X) &= \sum_{i=1}^{N} \mathcal{L}_{\phi, \theta}(X_{i}) = \\
-& =\sum_{i=1}^{n}(\mathbb{E}_{\epsilon \sim \mathcal{N}(0, I)}[\log P_{\theta}(X_{i} \mid z)] - \beta D_{KL}[Q_{\phi} \mid \mid p(z)])
-\end{align*}
+\mathcal{L}_{\phi, \theta}(X) = \sum_{i=1}^{N} \mathcal{L}_{\phi, \theta}(X_{i}) = \\
+ =\sum_{i=1}^{n}(\mathbb{E}_{\epsilon \sim \mathcal{N}(0, I)}[\log P_{\theta}(X_{i} \mid z)] - \beta D_{KL}[Q_{\phi} \mid \mid p(z)])
 $$
 where $\beta \in [0, 1]$ is an annealing parameter used to devalue the KL divergence between the approximated posterior and prior distributtions. 
 
@@ -36,18 +34,15 @@ The degree of realism is highly correlated to the portion of the latent space we
 ## Weighted latent space sampling
 The flaws of previous approach originate from the fact that we've attached the decoder entirely, and hence we've lost the reparameterization trick (affine transformation in case of Gaussian distributions). To circumvent this, we propose to first take a batch of $b$ images from the original dataset, and pass them through the encoder. So, for each image we obtain a $l$ dimensional mean vector, and a $l$ dimensional vector which represents the main diagonal of the covariance matrix. 
 $$
-\begin{align*}
-    &X = \{X_{1}, \ldots X_{b}\} \text{ samples taken from the dataset} \\
-    & (\mu_{i}, \log(\sigma_{i})) = Encoder_{\phi}(X_{i})
-    \end{align*}
+    X = \{X_{1}, \ldots X_{b}\} \text{ samples taken from the dataset}
+    \\
+    (\mu_{i}, \log(\sigma_{i})) = Encoder_{\phi}(X_{i})
 $$
 
 Afterwards we compute the weighted average of obtained vectors:
 $$
-\begin{align*}
-\mu' &= \sum_{i=1}^{b}\mu_{i}w_{i} \\
-\log(\sigma') &= \sum_{i=1}^{b}\log(\sigma_{i})w_{i}
-\end{align*}
+\mu' = \sum_{i=1}^{b}\mu_{i}w_{i} \\
+\log(\sigma') = \sum_{i=1}^{b}\log(\sigma_{i})w_{i}
 $$
 
 where $w_{i} \in [0, 1]$ are the weights of choice. Now we take $\epsilon \sim \mathcal{N}(0, I_{l})$ and apply the reparameterization trick:
