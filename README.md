@@ -1,5 +1,7 @@
 # Project description
-Implementation of a Variational Autoencoder with Gaussian likelihood and Gaussian prior latent distribution (which implies that the true posterior and the posterior approximated by the encoder are also Gaussian). The loss function used to train this model is the weighted ELBO:$$\mathcal{L}_{\phi,\theta}(X)=\sum_{i=1}^{N}\mathcal{L}_{\phi,\theta}(X_{i})=$$where $\beta \in [0, 1]$ is an annealing parameter used to devalue the KL divergence between the approximated posterior and prior distributtions. 
+Implementation of a Variational Autoencoder with Gaussian likelihood and Gaussian prior latent distribution (which implies that the true posterior and the posterior approximated by the encoder are also Gaussian). The loss function used to train this model is the weighted ELBO:
+![ELBO equation](./md_pics/elbo_equation.png)
+where $\beta \in [0, 1]$ is an annealing parameter used to devalue the KL divergence between the approximated posterior and prior distributtions. 
 
 To test our implementation, we used the famous CelebA dataset which contains ~200 images of human faces (it can be found on [Kaggle](https://www.kaggle.com/datasets/jessicali9530/celeba-dataset)).
 
@@ -47,3 +49,4 @@ We show some samples obtained with this technique for $b = 5$, and $w_{i} = \fra
 
 # TODO
 - Refactor passing hyperparameters through **config.py**.
+- A lot of unnecessary commits because of issues with math rendering in Markdown. Squish them into 1.
