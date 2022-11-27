@@ -31,7 +31,7 @@ The simplest form of sampling is to detach the encoder entirely, take a sample $
 The degree of realism is highly correlated to the portion of the latent space we end up in by sampling. More often than not, in the output we get a blurry reconstruction instead of something that resembles a realistic face.
 
 ## Weighted latent space sampling
-The flaws of previous approach originate from the fact that we've attached the decoder entirely, and hence we've lost the reparameterization trick (affine transformation in case of Gaussian distributions). To circumvent this, we propose to first take a batch of $b$ images from the original dataset, and pass them through the encoder. So, for each image we obtain a $l$ dimensional mean vector, and a $l$ dimensional vector which represents the main diagonal of the covariance matrix. 
+The flaws of previous approach originate from the fact that we've detached the encoder entirely, and hence we've lost the reparameterization trick (affine transformation in case of Gaussian distributions). To circumvent this, we propose to first take a batch of $b$ images from the original dataset, and pass them through the encoder. So, for each image we obtain a $l$ dimensional mean vector, and a $l$ dimensional vector which represents the main diagonal of the covariance matrix. 
 $$X = \{X_{1}, \ldots X_{b}\} \text{ samples taken from the dataset}$$
 $$(\mu_{i}, \log(\sigma_{i})) = Encoder_{\phi}(X_{i})$$
 
