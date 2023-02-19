@@ -54,7 +54,7 @@ def compare_reconstructions(image : torch.Tensor, recon : torch.Tensor, label: s
     canvas.show()
     if label is not None:
         canvas.save(label)
-
+    
 def show_samples(model : GaussianVAE, label: str, num_samples = 5, per_row = 5) -> None:
     """
     Non-parameterized latent space sampling. num_samples determines the number of samples 

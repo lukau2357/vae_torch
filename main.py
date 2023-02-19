@@ -26,6 +26,7 @@ if __name__ == "__main__":
 
      # Load a pretrained model
      model, _ = load_latest("full_aug_const_diminish_20_0_1")
+
      # Model summary   
      # summary(model, (3, IMAGE_SIZE, IMAGE_SIZE), 1)
      
@@ -38,19 +39,17 @@ if __name__ == "__main__":
      # image_val = get_images("celeba_validation", [162789, 162793, 162890, 162953, 162969])
 
      # Comparing original images with their reconstructions, without saving.
-     '''
      recon_train = model.generate(image_train)
      recon_val = model.generate(image_val)
      compare_reconstructions(image_train, recon_train, None)
      compare_reconstructions(image_val, recon_val, None)
-     '''
 
      # Losses plot
      # plot_losses("full_aug_const_diminish_20_0_1")
      
      # Unsupported sampling
-     # show_samples(model, None, num_samples = 15)
+     # show_samples(model, None, num_samples = 10)
 
      # Supported sampling, taking images from the validation dataset for example.
-     W = torch.Tensor(np.repeat(1, N)).to(DEVICE)
-     show_samples_baseline_weighted(model, image_val, W, None, num_samples = 1)
+     # W = torch.Tensor(np.repeat(1, N)).to(DEVICE)
+     # show_samples_baseline_weighted(model, image_val, W, None, num_samples = 1)
